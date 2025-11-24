@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfolio — Olivia Palomino</title>
+
+<!-- Tipografías -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- (Opcional) Alpine -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<style>
+    :root{
+        --blue-main:#2457FF;
+        --card-radius:24px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+        margin:0;
+        font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+        background: radial-gradient(circle at top,#3060cf 0,#161e4b 45%,#020931 100%);
+        color:#0E0E0E;
+        line-height:1.5;
+        overflow-x:hidden;
+    }
+
+    /* ---------- HERO PRINCIPAL ---------- */
+    .hero-portfolio{
+        padding:72px 16px 40px;
+    }
+
+    .hero-card{
+        max-width:1120px;
+        margin:0 auto;
+        background:#FFFFFF;
+        border-radius:32px;
+        box-shadow:0 26px 60px rgba(0,0,0,.35);
+        padding:32px 32px 28px;
+        position:relative;
+        overflow:hidden;
+    }
+
+    .hero-card::before{
+        content:"";
+        position:absolute;
+        inset:-140px;
+        background:radial-gradient(circle at top left,rgba(36,87,255,0.25),transparent 60%);
+        opacity:.9;
+        pointer-events:none;
+    }
+
+    .hero-inner{
+        position:relative;
+        z-index:1;
+    }
+
+    .hero-tag{
+        display:inline-flex;
+        align-items:center;
+        gap:.4rem;
+        padding:4px 12px;
+        border-radius:999px;
+        background:rgba(36,87,255,.08);
+        color:var(--blue-main);
+        font-size:11px;
+        font-weight:600;
+        letter-spacing:.16em;
+        text-transform:uppercase;
+    }
+
+    .hero-name{
+        font-family:'Kodchasan',system-ui,sans-serif;
+        font-weight:800;
+        font-size:clamp(32px,4vw,40px);
+        margin:10px 0 4px;
+        letter-spacing:.08em;
+    }
+
+    .hero-role{
+        font-weight:500;
+        color:var(--muted);
+        text-transform:uppercase;
+        letter-spacing:.22em;
+        font-size:11px;
+        margin-bottom:18px;
+    }
+
+    .hero-description{
+        font-size:14px;
+        color:#333848;
+        max-width:460px;
+    }
+
+    .hero-pill-row{
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+        margin-top:18px;
+    }
+
+    .pill{
+        font-size:11px;
+        padding:6px 12px;
+        border-radius:999px;
+        background:var(--blue-soft);
+        color:#1A2E5A;
+        font-weight:500;
+        letter-spacing:.04em;
+        text-transform:uppercase;
+    }
+
+    .hero-photo-wrap{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .hero-photo-card{
+        width:220px;
+        height:260px;
+        border-radius:28px;
+        background:linear-gradient(145deg,#2b5cff,#101935);
+        padding:12px;
+        position:relative;
+        box-shadow:0 18px 40px rgba(0,0,0,.35);
+    }
+
+    .hero-photo-card img{
+        width:100%;
+        height:100%;
+        border-radius:22px;
+        object-fit:cover;
+        background:#cfd4ff;
+    }
+
+    .hero-photo-card::after{
+        content:"OLIVIA";
+        position:absolute;
+        bottom:-26px;
+        right:18px;
+        font-size:11px;
+        text-transform:uppercase;
+        letter-spacing:.25em;
+        color:#c3d1ff;
+        opacity:.8;
+    }
+
+    /* ---------- SECCIONES GENERALES ---------- */
+
+    main{
+        padding-bottom:72px;
+    }
+
+    section.block{
+        padding:54px 16px;
+    }
+
+    .kicker{
+        color:var(--muted);
+        font-weight:600;
+        text-transform:uppercase;
+        letter-spacing:.18em;
+        font-size:11px;
+        margin-bottom:4px;
+    }
+
+    h2.section-title{
+        font-family:'Kodchasan',system-ui,sans-serif;
+        font-weight:700;
+        font-size:clamp(22px,3vw,26px);
+        margin:0 0 10px;
+    }
+
+    .section{
+        display:flex;
+        gap:32px;
+        align-items:flex-start;
+        max-width:1120px;
+        margin:0 auto;
+    }
+
+    .section.alt{
+        flex-direction:row-reverse;
+    }
+
+    .section .text{
+        flex:1 1 55%;
+        color:#f1f3ff;
+    }
+
+    .section .text p{
+        color:#c7c9dd;
+        font-size:14px;
+        margin-bottom:8px;
+    }
+
+    .section .media{
+        flex:1 1 45%;
+    }
+
+    .card-soft{
+        border-radius:var(--card-radius);
+        background:rgba(7,9,28,.9);
+        border:1px solid rgba(162,182,255,.35);
+        padding:20px 22px;
+        color:#f6f7ff;
+    }
+
+    .card-soft h3{
+        font-size:15px;
+        text-transform:uppercase;
+        letter-spacing:.15em;
+        margin-bottom:10px;
+        color:#c8d2ff;
+    }
+
+    .badge-skill{
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        padding:6px 10px;
+        border-radius:999px;
+        background:rgba(36,87,255,.16);
+        font-size:12px;
+        margin:0 6px 6px 0;
+        color:#e2e5ff;
+    }
+
+    .badge-skill span.icon{
+        width:16px;
+        height:16px;
+        border-radius:999px;
+        background:#2457ff;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        font-size:10px;
+        font-weight:700;
+        color:#fff;
+    }
+
+    /* ---------- LISTAS, TIMELINE, ETC ---------- */
+
+    .timeline{
+        position:relative;
+        padding-left:22px;
+        margin-top:10px;
+    }
+
+    .timeline::before{
+        content:"";
+        position:absolute;
+        left:7px;
+        top:4px;
+        bottom:4px;
+        width:2px;
+        background:linear-gradient(to bottom,#4e6dff,#98b4ff);
+        opacity:.65;
+    }
+
+    .timeline-item{
+        margin-bottom:14px;
+        position:relative;
+    }
+
+    .timeline-item::before{
+        content:"";
+        position:absolute;
+        left:-15px;
+        top:4px;
+        width:10px;
+        height:10px;
+        border-radius:999px;
+        background:#fff;
+        border:2px solid #2457ff;
+    }
+
+    .timeline-year{
+        font-size:11px;
+        font-weight:600;
+        letter-spacing:.18em;
+        text-transform:uppercase;
+        color:#aeb7ff;
+        margin-bottom:2px;
+    }
+
+    .timeline-title{
+        font-weight:600;
+        font-size:13px;
+        color:#f4f5ff;
+    }
+
+    .timeline-desc{
+        font-size:12px;
+        color:#c0c4e6;
+    }
+
+    ul.clean{
+        list-style:none;
+        padding-left:0;
+        margin:0;
+    }
+
+    ul.clean li{
+        padding-left:18px;
+        position:relative;
+        font-size:13px;
+        color:#c8cae4;
+        margin-bottom:6px;
+    }
+
+    ul.clean li::before{
+        content:"•";
+        position:absolute;
+        left:3px;
+        top:-1px;
+        color:#7f9dff;
+        font-size:18px;
+    }
+
+    /* ---------- GRID DE PROYECTOS ---------- */
+
+    .projects-grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:18px;
+        margin-top:12px;
+    }
+
+    .project-card{
+        border-radius:22px;
+        background:rgba(5,8,34,.96);
+        border:1px solid rgba(118,148,255,.4);
+        padding:16px 18px 18px;
+        color:#f4f6ff;
+    }
+
+    .project-label{
+        font-size:11px;
+        text-transform:uppercase;
+        letter-spacing:.22em;
+        color:#97a6ff;
+        margin-bottom:4px;
+    }
+
+    .project-card h3{
+        font-size:15px;
+        margin:0 0 4px;
+    }
+
+    .project-meta{
+        font-size:11px;
+        color:#c0c4e6;
+        margin-bottom:6px;
+    }
+
+    /* ---------- CONTACTO / FOOTER ---------- */
+
+    footer{
+        background:#091341;
+        border-top:1px solid rgba(151,169,255,.45);
+        padding:32px 16px 40px;
+        color:#b0b4d8;
+    }
+
+    .footer-inner{
+        max-width:1120px;
+        margin:0 auto;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:space-between;
+        gap:16px;
+        align-items:center;
+        font-size:13px;
+    }
+
+    .footer-links{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px 18px;
+    }
+
+    .footer-links a{
+        color:#e0e4ff;
+        text-decoration:none;
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        padding:6px 10px;
+        border-radius:999px;
+        background:rgba(36,87,255,.09);
+    }
+
+    .footer-links a span.icon{
+        width:16px;
+        height:16px;
+        border-radius:999px;
+        background:#2457ff;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        font-size:10px;
+        color:#fff;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width: 992px){
+        .hero-card{
+        padding:24px 20px 26px;
+        }
+    }
+
+    @media (max-width: 768px){
+        .section,
+        .section.alt{
+        flex-direction:column;
+        }
+        .hero-photo-card{
+        margin-top:18px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO PORTFOLIO -->
+    <section class="hero-portfolio">
+    <div class="hero-card">
+        <div class="hero-inner">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-7">
+            <div class="hero-tag">Portfolio 2025</div>
+            <h1 class="hero-name">Olivia Palomino</h1>
+            <div class="hero-role">TIC · UX/UI · Desarrollo Web · Gastronomía</div>
+            <p class="hero-description">
+                Técnica en Tecnología de la Información y la Comunicación (TIC) y Chef en formación,
+                con experiencia en diseño UX/UI, desarrollo web y proyectos interdisciplinarios.
+                Combino mi lado creativo con una base técnica sólida para diseñar experiencias
+                digitales funcionales y estéticas.
+            </p>
+
+            <div class="hero-pill-row">
+                <span class="pill">Técnica en TIC</span>
+                <span class="pill">Chef &amp; Gastronomía</span>
+                <span class="pill">UX/UI Design</span>
+                <span class="pill">Frontend</span>
+                <span class="pill">Blender 3D</span>
+            </div>
+            </div>
+
+            <div class="col-md-5 hero-photo-wrap">
+            <div class="hero-photo-card">
+                <!-- poné acá tu foto real -->
+                <img src="Imagen de WhatsApp 2025-11-24 a las 15.22.28_69b0a391.jpg" alt="Foto de Olivia Palomino">
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <main>
+
+    <!-- SOBRE MÍ + IDIOMAS / HABILIDADES -->
+    <section class="block">
+        <div class="section">
+        <div class="text">
+            <div class="kicker">Perfil</div>
+            <h2 class="section-title">Sobre mí</h2>
+            <p>
+            Soy Olivia Palomino, técnica egresada de la Escuela Técnica ORT con especialización
+            en Tecnología de la Información y la Comunicación (TIC).
+            </p>
+            <p>
+            También cuento con formación en gastronomía por el Instituto Lycée, donde obtuve el
+            título de Chef y actualmente continúo la carrera de Profesional en Gastronomía y
+            Pastelería. Estudié gran parte de mi vida en una escuela bilingüe, lo que me permitió
+            alcanzar un alto nivel de inglés.
+            </p>
+            <p>
+            Me destaco por mi creatividad, compromiso y versatilidad. Disfruto trabajar en equipo,
+            aprender herramientas nuevas y participar en proyectos donde se conecten la tecnología,
+            el diseño y la gastronomía.
+            </p>
+        </div>
+
+        <div class="media">
+            <div class="card-soft mb-3">
+        <h3>Idiomas</h3>
+            <ul class="clean">
+                <li><strong>Español</strong> — Nativo</li>
+                <li><strong>Inglés</strong> — Avanzado (formación bilingüe)</li>
+            </ul>
+            </div>
+
+            <div class="card-soft">
+            <h3>Skills principales</h3>
+            <div class="badge-skill">
+                <span class="icon">UX</span>
+                UX/UI Design (Figma)
+            </div>
+            <div class="badge-skill">
+                <span class="icon">&lt;/&gt;</span>
+                HTML · CSS · JavaScript
+            </div>
+            <div class="badge-skill">
+                <span class="icon">3D</span>
+                Modelado y animación 3D en Blender
+            </div>
+            <div class="badge-skill">
+                <span class="icon">EQ</span>
+                Trabajo en equipo &amp; liderazgo
+            </div>
+            <div class="badge-skill">
+                <span class="icon">✨</span>
+                Creatividad &amp; adaptabilidad
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- EDUCACIÓN + TÍTULOS (TIMELINE) -->
+    <section class="block">
+        <div class="section alt">
+        <div class="text">
+            <div class="kicker">Formación</div>
+            <h2 class="section-title">Educación y títulos</h2>
+            <p>
+            Mi formación combina el mundo tecnológico con el gastronómico, permitiéndome abordar
+            proyectos desde una mirada integral: técnica, creativa y humana.
+            </p>
+
+            <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-title">Técnica en Tecnología de la Información y la Comunicación</div>
+                <div class="timeline-desc">
+                Escuela Técnica ORT — Especialización en TIC, con foco en desarrollo de software,
+                diseño digital y proyectos interdisciplinarios.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-title">Título de Chef</div>
+                <div class="timeline-desc">
+                Instituto Lycée — Formación profesional en cocina, bases de pastelería y organización
+                de servicio gastronómico.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2026 (en curso)</div>
+                <div class="timeline-title">Profesional en Gastronomía y Pastelería</div>
+                <div class="timeline-desc">
+                Profundización en técnicas gastronómicas, planificación de menú y proyectos
+                integrales vinculados a la cocina.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="media">
+            <div class="card-soft">
+            <h3>Áreas de interés</h3>
+            <ul class="clean">
+                <li>Diseño de experiencias digitales aplicadas a gastronomía.</li>
+                <li>Proyectos que combinen tecnología, arte y cultura.</li>
+                <li>Branding y diseño visual para emprendimientos gastronómicos.</li>
+                <li>Automatización y herramientas digitales para cocina y servicio.</li>
+            </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCIA / PROYECTOS TIC -->
+    <section class="block">
+        <div class="section">
+        <div class="text">
+            <div class="kicker">Experiencia</div>
+            <h2 class="section-title">Proyectos y práctica</h2>
+            <p>
+            Durante mi especialidad en TIC participé en múltiples proyectos interdisciplinarios que
+            integran diseño, programación y gestión de productos digitales. Estas experiencias me
+            ayudaron a desarrollar criterio visual, pensamiento lógico y habilidades de trabajo en
+            equipo.
+            </p>
+            <ul class="clean">
+            <li>
+                Desarrollo de interfaces en Figma para aplicaciones web, priorizando la claridad,
+                accesibilidad y consistencia visual.
+            </li>
+            <li>
+                Implementación de landing pages y sitios informativos usando HTML, CSS y JavaScript.
+            </li>
+            <li>
+                Participación en proyectos grupales donde se combinaron datos, diseño y narrativa
+                visual.
+            </li>
+            <li>
+                Organización y planificación para compatibilizar estudios secundarios y formación
+                gastronómica en paralelo.
+            </li>
+            </ul>
+        </div>
+
+        <div class="media">
+            <div class="projects-grid">
+            <article class="project-card">
+                <div class="project-label">TIC · UX/UI</div>
+                <h3>Scorik – Audio to music sheets</h3>
+                <div class="project-meta">Diseño UX/UI · Frontend</div>
+                <p>
+                Diseño de una herramienta para transformar audio en partituras digitales. Armado de
+                wireframes, maquetado visual y adaptación a un diseño responsive.
+                </p>
+            </article>
+
+            <article class="project-card">
+                <div class="project-label">Gastronomía</div>
+                <h3>Proyectos de cocina &amp; branding</h3>
+                <div class="project-meta">Concepto · Imagen · Presentación</div>
+                <p>
+                Desarrollo de propuestas gastronómicas acompañadas de identidad visual simple
+                (colores, tipografías y presentación del plato).
+                </p>
+            </article>
+
+            <article class="project-card">
+                <div class="project-label">3D &amp; Visual</div>
+                <h3>Exploraciones en Blender</h3>
+                <div class="project-meta">Modelado 3D · Iluminación</div>
+                <p>
+                Creación de escenas básicas y elementos 3D para experimentación visual y posibles
+                aplicaciones en interfaces y piezas gráficas.
+                </p>
+            </article>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- HABILIDADES DETALLADAS -->
+    <section class="block">
+        <div class="section alt">
+        <div class="text">
+            <div class="kicker">Habilidades</div>
+            <h2 class="section-title">Lo que puedo aportar a un equipo</h2>
+            <p>
+            Me gusta ser parte del proceso completo: desde la idea inicial hasta la entrega final
+            del proyecto. Esto me permite adaptarme a distintos roles dentro de un equipo.
+            </p>
+
+            <ul class="clean">
+            <li>
+                <strong>Diseño UX/UI:</strong> prototipado en Figma, creación de sistemas de diseño,
+                componentes reutilizables y preparación de assets para desarrollo.
+            </li>
+            <li>
+                <strong>Desarrollo web:</strong> maquetación responsive, estilos limpios y ordenados,
+                atención a tipografía, color y jerarquía visual.
+            </li>
+            <li>
+                <strong>Gestión y organización:</strong> planificación de tareas, trabajo bajo
+                deadlines, comunicación clara con el resto del equipo.
+            </li>
+            <li>
+                <strong>Gastronomía:</strong> enfoque estético en la presentación, cuidado por el
+                detalle y comprensión del trabajo en cocina como entorno de alta coordinación.
+            </li>
+            </ul>
+        </div>
+
+        <div class="media">
+            <div class="card-soft">
+            <h3>Herramientas</h3>
+            <ul class="clean">
+                <li>Figma (diseño de interfaces, prototipos interactivos).</li>
+                <li>HTML, CSS (Flexbox, Grid) y conceptos básicos de JavaScript.</li>
+                <li>Blender para modelado y animación 3D sencilla.</li>
+                <li>Suite Office / Google Workspace para documentación y presentaciones.</li>
+            </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer>
+    <div class="footer-inner">
+        <div class="footer-links">
+        <a href="mailto:olivia1009palomino@hotmail.com">
+            <span class="icon">@</span>
+            <span>olivia1009palomino@hotmail.com</span>
+        </a>
+        <a href="https://wa.me/5491168686547" target="_blank">
+            <span class="icon">✆</span>
+            <span>5491168686547</span>
+        </a>
+        <a href="#" target="_blank">
+            <span class="icon">in</span>
+            <span>Olivia.Palomino</span>
+            </a>
+        </div>
+    </div>
+    </footer>
+
+</body>
+</html>
